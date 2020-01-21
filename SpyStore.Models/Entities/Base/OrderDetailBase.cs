@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class OrderDetailBase : EntityBase
 {
@@ -10,4 +11,7 @@ public class OrderDetailBase : EntityBase
     public int Quantity { get; set; }
     [Required, DataType(DataType.Currency), Display(Name = "Unit Cost")]
     public decimal UnitCost { get; set; }
+    [DataType(DataType.Currency), Display(Name="Total")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public decimal LineItemTotal { get; set; }
 }

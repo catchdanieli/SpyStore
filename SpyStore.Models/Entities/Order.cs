@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 // using SpyStore.Models.Entities.Base;
 
@@ -10,4 +11,8 @@ public class Order : OrderBase
 
     [ForeignKey(nameof(CustomerId))]
     public Customer CustomerNavigation { get; set; }
+
+    [Display(Name="Total")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public decimal OrderTotal { get; set; }
 }

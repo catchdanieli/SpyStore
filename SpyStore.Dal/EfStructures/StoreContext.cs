@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 //using SpyStore.Models.Entities;
 //using SpyStore.Models.Entities.Base;
+using SpyStore.Models.ViewModels;
 
 public class StoreContext: DbContext
 {
@@ -18,6 +19,16 @@ public class StoreContext: DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<ShoppingCartRecord> ShoppingCartRecords { get; set; }
 
+    public DbQuery<CartRecordWithProductInfo> CartRecordWithProductInfos { get; set; }
+    public DbQuery<OrderDetailWithProductInfo> OrderDetailWithProductInfos { get; set; }
+
+    [DbFunction("GetOrderTotal", Schema = "Store")]
+    public static int GetOrderTotal(int orderId)
+    {
+        //code in here doesn't matter
+        throw new Exception();
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>(entity => {
@@ -27,12 +38,14 @@ public class StoreContext: DbContext
         modelBuilder.Entity<Order>(entity => {
             entity.Property(e => e.OrderDate).HasColumnType("datetime").HasDefaultValueSql("getdate()");
             entity.Property(e => e.ShipDate).HasColumnType("datetime").HasDefaultValueSql("getdate()");
+            entity.Property(e => e.OrderTotal).HasColumnType("Money").HasComputedColumnSql("Store.GetOrderTotal([Id])");
         });
 
         modelBuilder.Entity<Order>().HasQueryFilter(x => x.CustomerId == CustomerId);
 
         modelBuilder.Entity<OrderDetail>(entity => {
             entity.Property(e => e.UnitCost).HasColumnType("money");
+            entity.Property(e => e.LineItemTotal).HasColumnType("money").HasComputedColumnSql("[Quantity]*[UnitCost]");
         });
 
         modelBuilder.Entity<Product>(entity => {
@@ -55,6 +68,9 @@ public class StoreContext: DbContext
         });
 
         modelBuilder.Entity<ShoppingCartRecord>().HasQueryFilter(x => x.CustomerId == CustomerId);
+
+        modelBuilder.Query<CartRecordWithProductInfo>().ToView("CartRecordWithProductInfo", "Store");
+        modelBuilder.Query<OrderDetailWithProductInfo>().ToView("OrderDetailWithProductInfo", "Store");
     }
 }
 

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 [Table("Customer", Schema="Store")]
 public class Customer : EntityBase
 {
-    [Column(TypeName="string")]
+    //[DataType(DataType.string)]
     [MaxLength(50), Display(Name="Full Name")]
     // [DataType(DataType.string), MaxLength(50), Display(Name="Full Name")]
     public string FullName { get; set; }
