@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using SpyStore.Models.Entities.Base;
+// using SpyStore.Models.Entities.Base;
 
 [Table("Orders", Schema = "Store")]
 public class Order : OrderBase

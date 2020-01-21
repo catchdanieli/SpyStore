@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using SpyStore.Models.Entities.Base;
+// using SpyStore.Models.Entities.Base;
 using Newtonsoft.Json;
 
 [Table("ShoppingCartRecords", Schema = "Store")]

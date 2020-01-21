@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using SpyStore.Models.Entities.Base;
+// using SpyStore.Models.Entities.Base;
 
 [Table("OrderDetails", Schema = "Store")]
 public class OrderDetail : OrderDetailBase

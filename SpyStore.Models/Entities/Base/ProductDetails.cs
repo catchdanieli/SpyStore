@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-[Owned] // allows this class to be added as property to another entity class
+ // allows this class to be added as property to another entity class
+[Owned]
 public class ProductDetails
 {
     [MaxLength(3800)]

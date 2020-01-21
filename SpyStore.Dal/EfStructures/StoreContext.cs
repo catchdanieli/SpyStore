@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using SpyStore.Models.Entities;
-using SpyStore.Models.Entities.Base;
+//using SpyStore.Models.Entities;
+//using SpyStore.Models.Entities.Base;
 
 public class StoreContext: DbContext
 {

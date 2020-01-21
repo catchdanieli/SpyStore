@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
-using SpyStore.Models.Entities.Base;
+// using SpyStore.Models.Entities.Base;
 
 [Table("Products", Schema = "Store")]
 public class Product : EntityBase

@@ -1,12 +1,15 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
-using SpyStore.Models.Entities.Base;
+// using SpyStore.Models.Entities.Base;
 
 [Table("Customer", Schema="Store")]
 public class Customer : EntityBase
 {
-    [DataType(DataType.string), MaxLength(50), Display(Name="Full Name")]
+    [Column(TypeName="string")]
+    [MaxLength(50), Display(Name="Full Name")]
+    // [DataType(DataType.string), MaxLength(50), Display(Name="Full Name")]
     public string FullName { get; set; }
     [Required, DataType(DataType.EmailAddress), Display(Name="Email Address")]
     public string EmailAddress { get; set; }
